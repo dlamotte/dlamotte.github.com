@@ -1,0 +1,40 @@
+ASSET_PATH: false
+BASE_PATH: false
+
+exclude: ["README.md", "Rakefile"]
+
+title: dlamotte
+tagline: just a jack-of-all-trades programmer
+author:
+  name: Dan LaMotte
+  email: lamotte85@gmail.com
+  github: dlamotte
+  googleplus: 104732088736567367441
+  linkedin: danlamotte
+  twitter: dlamotte_
+  #feedburner: feedname
+
+analytics:
+  google:
+    tracking_id: UA-34607478-1
+
+auto: true
+
+comments:
+  disqus:
+    short_name: dlamotte
+
+layouts: _layouts
+
+markdown: redcarpet
+
+permalink: /:categories/:year/:title/
+posts: _posts
+post_ext: md
+pygments: true
+
+urls:
+  archive: /archive/
+  atom: /atom.xml
+  production: http://dlamotte.github.com
+  tags: /tags/

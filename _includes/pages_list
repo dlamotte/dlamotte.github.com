@@ -1,0 +1,3 @@
+{% for page in pages_list %}
+  <li><span>{{ page.date | date: "%Y-%m-%d" }}</span> &mdash; <a href="{{ BASE_PATH }}{{ page.url }}">{{ page.title }}</a></li>
+{% endfor %}
