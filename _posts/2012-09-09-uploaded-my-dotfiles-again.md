@@ -37,9 +37,7 @@ Another interesting extension is the `alias` I've added to my
 shouldn't need to `cd` into my dotfiles sandbox.  Instead, I should have
 direct access to the dotfiles sandbox.  The `alias` looks like this:
 
-``` zsh
-alias gitdot="git --git-dir=$HOME/sandbox/dotfiles/.git --work-tree=$HOME/sandbox/dotfiles/"
-```
+    alias gitdot="git --git-dir=$HOME/sandbox/dotfiles/.git --work-tree=$HOME/sandbox/dotfiles/"
 
 Now I can just use `gitdot` in place of `git` and work on my dotfiles from
 wherever I like.

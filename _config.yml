@@ -26,8 +26,6 @@ comments:
 
 layouts: _layouts
 
-markdown: redcarpet
-
 permalink: /:categories/:year/:title/
 posts: _posts
 post_ext: md
