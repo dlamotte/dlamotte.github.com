@@ -129,6 +129,45 @@ setTimeout(function() {
 }, 5000);
 ```
 
+Also with deferreds, progress bars become trivial:
+
+``` javascript
+var defer = Q.defer();
+var promise = defer.promise;
+
+promise.progress(function(mesg) {
+  console.log(mesg);
+})
+.then(function(value) {
+  console.log(value);
+})
+.done();
+
+setTimeout(function() {
+  defer.notify('25% complete');
+}, 1000);
+
+setTimeout(function() {
+  defer.notify('50% complete');
+}, 2000);
+
+setTimeout(function() {
+  defer.notify('75% complete');
+}, 3000);
+
+setTimeout(function() {
+  defer.notify('100% complete');
+  defer.resolve('done');
+}, 4000);
+
+// the above prints:
+// > 25% complete
+// > 50% complete
+// > 75% complete
+// > 100% complete
+// > done
+```
+
 There are plenty of other interesting and exciting ways to use the library.
 The above got me started to the point where I could start exploring other
 uses and I wouldn't get bogged down in details and overly confused.
