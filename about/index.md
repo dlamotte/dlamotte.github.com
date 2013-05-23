@@ -23,17 +23,19 @@ Interests
 * web and associated technologies
 * version control
 * database technologies
+* finances
 
 Preferred work environment
 --------------------------
 * vim
 * zsh
-* gnu screen
-* linux/MacOSX
+* tmux
+* linux/mac
 * git/hg
 
 Preferred Technologies
 ----------------------
 * python
-* Django
+* django
 * postgres
+* redis
