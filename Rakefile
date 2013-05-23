@@ -71,9 +71,9 @@ task :page do
 end # task :page
 
 desc "Launch preview environment"
-task :preview do
-  system "jekyll --server"
-end # task :preview
+task :serve do
+  system "jekyll serve"
+end
 
 def ask(message, valid_options)
   if valid_options

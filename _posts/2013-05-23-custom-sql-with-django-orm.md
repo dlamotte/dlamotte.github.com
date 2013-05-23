@@ -15,42 +15,40 @@ saving associated params with that query.  So, now, you want to do something
 more complicated, you need to use the "Escape Hatch" and use custom SQL, but
 you still need to begin with a `QuerySet` as a base.  Here's how:
 
-```
-from django.db import connections, router
-from myproject.models import MyModel
+    from django.db import connections, router
+    from myproject.models import MyModel
 
-qs = MyModel.objects.filter(...) # feel free to use the QuerySet API however
+    qs = MyModel.objects.filter(...) # feel free to use the QuerySet API however
 
-def do_custom_sql(qs):
-    conn = connections[router.db_for_read(qs.model)]
-    cursor = conn.cursor()
+    def do_custom_sql(qs):
+        conn = connections[router.db_for_read(qs.model)]
+        cursor = conn.cursor()
 
-    # build the SQL and extract the params
-    sql, params = qs.query.get_compiler(router.db_for_read(qs.model)).as_sql()
+        # build the SQL and extract the params
+        sql, params = qs.query.get_compiler(router.db_for_read(qs.model)).as_sql()
 
-    # extract the WHERE clause
-    where = sql[sql.index('WHERE') + 5:]
+        # extract the WHERE clause
+        where = sql[sql.index('WHERE') + 5:]
 
-    cursor.execute('''
-        SELECT
-            column1
-            , count(column2) as hits
-        FROM
-            %(table)s
-        WHERE
-            %(where)s
-        GROUP BY
-            column1
-        HAVING
-            hits > 100
-    ''' % {
-        'table': conn.ops.quote_name(qs.model._meta.db_table),
-        'where': where,
-    }, params)
+        cursor.execute('''
+            SELECT
+                column1
+                , count(column2) as hits
+            FROM
+                %(table)s
+            WHERE
+                %(where)s
+            GROUP BY
+                column1
+            HAVING
+                hits > 100
+        ''' % {
+            'table': conn.ops.quote_name(qs.model._meta.db_table),
+            'where': where,
+        }, params)
 
-    for column1, hits in cursor.fetchall():
-        ...
-```
+        for column1, hits in cursor.fetchall():
+            ...
 
 Now you can use the power of the ORM with the power of custom SQL.  Of course
 there are caveats, but at least this is in your toolbox now and you'll probably
