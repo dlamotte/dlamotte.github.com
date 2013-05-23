@@ -18,8 +18,6 @@ analytics:
   google:
     tracking_id: UA-34607478-1
 
-auto: true
-
 comments:
   disqus:
     short_name: dlamotte
